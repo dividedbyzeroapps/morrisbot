@@ -1,7 +1,5 @@
 package main
 
-// http://rhymebrain.com/talk?function=getRhymes&word=coin&maxResults=0&lang=en
-
 import (
 	"encoding/json"
 	"fmt"
@@ -26,6 +24,8 @@ type RhymebrainResult struct {
 // Rhymes are in rhyme_service.rb
 
 func rhymes(word []byte) {
+	// TODO: get rhymes from
+	// http://rhymebrain.com/talk?function=getRhymes&word=coin&maxResults=0&lang=en
 	many := []byte(`
 		[ {"word":"goin","freq":19,"score":300,"flags":"c","syllables":"1"},
 		{"word":"join","freq":23,"score":300,"flags":"bc","syllables":"1"},
@@ -48,23 +48,32 @@ func rhymes(word []byte) {
 
 	check(err)
 	fmt.Println(results)
+	fmt.Println(results[0].Word)
 }
 
 func main() {
-	phraseFiles := []string{
+	keyword := "coin"
+	// TODO:
+	// 1) Iterate through all phrases and all rhymes,
+	// 2) find phrases that have a rhyme in them
+	// 3) replace the rhyme with the keyword in the phrase
+	// 4) collect the changed phrases in a slice
+	// 5) print out the changed phrases
+
+	phraseFilePaths := []string{
 		"phrases/beatles_songs.txt",
 		"phrases/best-selling-books.txt",
 		"phrases/movie-quotes.txt",
 		"phrases/oscar_winning_movies.txt",
 		"phrases/wikipedia_idioms.txt",
 	}
-	phraseLines := []string{}
+	phrases := []string{}
 
-	for _, fileName := range phraseFiles {
-		dat, err := ioutil.ReadFile(fileName)
+	for _, path := range phraseFilePaths {
+		contents, err := ioutil.ReadFile(path)
 		check(err)
-		phraseLines = append(phraseLines, string(dat))
+		phrases = append(phrases, string(contents))
 	}
-	rhymes([]byte("coin"))
+	rhymes([]byte(keyword))
 	// fmt.Println(phraseLines)
 }
