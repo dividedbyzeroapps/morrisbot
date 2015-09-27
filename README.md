@@ -1,24 +1,31 @@
-# GirlsJustWantToHavePuns
+# GorlsJustWantToHavePuns
 
-TODO: Write a gem description
+This is a fork of Ian's excellent [girls_just_want_to_have_puns][ian],
+made in Go.
 
-## Installation
+[ian]: https://github.com/iancanderson/girls_just_want_to_have_puns
 
-Add this line to your application's Gemfile:
+## Why go?
 
-    gem 'girls_just_want_to_have_puns'
+Because it's also a pun.
 
-And then execute:
+## Any other reasons?
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install girls_just_want_to_have_puns
+None as compelling as the gorls/girls pun.
 
 ## Usage
 
-TODO: Write usage instructions here
+Say you want puns for the word "heart":
+
+    go run Gorls.go heart
+
+Or, build it:
+
+    go build Gorls.go
+
+And run it:
+
+    ./Gorls heart
 
 ## Contributing
 
