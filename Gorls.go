@@ -1,10 +1,20 @@
 package main
 
+// Print out puns for the provided word
+// Usage:
+//   go run Gorls.go heart
+// or:
+//   ./Gorls heart
+//
+// Inspired by/ripped off from https://github.com/iancanderson/girls_just_want_to_have_puns
+// Thanks, Ian.
+
 import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"regexp"
 	"strings"
 )
@@ -68,7 +78,12 @@ func main() {
 	// 4) Collect the changed phrases in a slice
 	// 5) Print out the changed phrases
 
-	keyword := "hearts"
+	if len(os.Args) < 2 {
+		fmt.Fprintf(os.Stderr, "Usage: go run Gorls.go [word to pun on]\n")
+		os.Exit(64)
+	}
+	keyword := os.Args[1]
+	fmt.Printf("Punning on \"%s\"\n", keyword)
 	puns := []Pun{}
 	rhymes := wordsWithMaximumScore(rhymes(keyword))
 
@@ -99,7 +114,11 @@ func main() {
 		}
 	}
 
-	for _, pun := range puns {
-		fmt.Println(pun.PunPhrase + " (pun of " + pun.OriginalPhrase + ")")
+	if len(puns) == 0 {
+		fmt.Println("No puns found :(")
+	} else {
+		for _, pun := range puns {
+			fmt.Println(pun.PunPhrase + " (pun of " + pun.OriginalPhrase + ")")
+		}
 	}
 }
