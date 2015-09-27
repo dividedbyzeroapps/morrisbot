@@ -28,7 +28,7 @@ type Pun struct {
 func rhymes(word string) []RhymebrainResult {
 	// TODO: get rhymes from
 	// http://rhymebrain.com/talk?function=getRhymes&word=coin&maxResults=0&lang=en
-	many := []byte(`
+	rawJSON := []byte(`
 		[ {"word":"part","freq":27,"score":300,"flags":"bc","syllables":"1"},
 		{"word":"start","freq":24,"score":300,"flags":"bc","syllables":"1"},
 		{"word":"chart","freq":22,"score":300,"flags":"bc","syllables":"1"},
@@ -531,7 +531,7 @@ func rhymes(word string) []RhymebrainResult {
 		{"word":"reconstruct","freq":20,"score":84,"flags":"bc","syllables":"3"}]
 	`)
 	results := make([]RhymebrainResult, 0)
-	err := json.Unmarshal(many, &results)
+	err := json.Unmarshal(rawJSON, &results)
 	check(err)
 	return results
 }
