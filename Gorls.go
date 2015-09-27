@@ -20,6 +20,11 @@ type RhymebrainResult struct {
 	Score int    `json:"score"`
 }
 
+type Pun struct {
+	PunPhrase      string
+	OriginalPhrase string
+}
+
 func rhymes(word string) []RhymebrainResult {
 	// TODO: get rhymes from
 	// http://rhymebrain.com/talk?function=getRhymes&word=coin&maxResults=0&lang=en
@@ -77,7 +82,7 @@ func main() {
 	// 5) print out the changed phrases
 
 	keyword := "coin"
-	puns := []string{}
+	puns := []Pun{}
 	rhymes := wordsWithMaximumScore(rhymes(keyword))
 
 	phraseFilePaths := []string{
@@ -100,7 +105,8 @@ func main() {
 				if matches {
 					// Replace the rhyme with the word we're punning on.
 					// If the word is "carts", Lonely Hearts -> Lonely Carts
-					pun := re.ReplaceAllString(phrase, keyword)
+					punPhrase := re.ReplaceAllString(phrase, keyword)
+					pun := Pun{PunPhrase: punPhrase, OriginalPhrase: phrase}
 					puns = append(puns, pun)
 				}
 			}
@@ -108,6 +114,6 @@ func main() {
 	}
 
 	for _, pun := range puns {
-		fmt.Println(pun)
+		fmt.Println(pun.PunPhrase + " (pun of " + pun.OriginalPhrase + ")")
 	}
 }
