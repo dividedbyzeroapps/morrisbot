@@ -14,11 +14,8 @@ func check(e error) {
 }
 
 type RhymebrainResult struct {
-	Word      string `json:"word"`
-	Freq      int    `json:"freq"`
-	Score     int    `json:"score"`
-	Flags     string `json:"flags"`
-	Syllables string `json:"syllables"`
+	Word  string `json:"word"`
+	Score int    `json:"score"`
 }
 
 // Rhymes are in rhyme_service.rb
@@ -45,7 +42,6 @@ func rhymes(word []byte) {
 	`)
 	results := make([]RhymebrainResult, 0)
 	err := json.Unmarshal(many, &results)
-
 	check(err)
 	fmt.Println(results)
 	fmt.Println(results[0].Word)
