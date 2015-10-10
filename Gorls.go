@@ -40,12 +40,15 @@ func rhymes(word string) []RhymebrainResult {
 	url := "http://rhymebrain.com/talk?function=getRhymes&word=" + word + "&maxResults=0&lang=en"
 	response, httpErr := http.Get(url)
 	check(httpErr)
+
 	defer response.Body.Close()
 	rawJSON, readErr := ioutil.ReadAll(response.Body)
 	check(readErr)
+
 	results := make([]RhymebrainResult, 0)
 	err := json.Unmarshal(rawJSON, &results)
 	check(err)
+
 	return results
 }
 

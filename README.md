@@ -27,6 +27,12 @@ And run it:
 
     ./Gorls heart
 
+## Testing
+
+Run the tests:
+
+    go test
+
 ## Contributing
 
 1. Fork it
