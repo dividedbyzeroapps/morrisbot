@@ -1,0 +1,8 @@
+{
+  "name": "Gorls just Want to have fun",
+  "description": "Simple Go web server that fetches a random pun for a keyword",
+  "repository": "https://github.com/calebthompson/gorls_just_want_to_have_fun",
+  "logo": "https://dmrvs9yavc1w2.cloudfront.net/assets/languages/go/hero-logo@2x.png",
+  "success_url": "/success",
+  "keywords": ["go", "puns"]
+}
