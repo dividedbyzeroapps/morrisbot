@@ -18,9 +18,10 @@ type RhymebrainResult struct {
 }
 
 type Pun struct {
-	PunPhrase      string
-	OriginalPhrase string
-	Error          string
+	Keyword        string `json:,omitempty`
+	PunPhrase      string `json:,omitempty`
+	OriginalPhrase string `json:,omitempty`
+	Error          string `json:,omitempty`
 }
 
 func rhymes(word string) []RhymebrainResult {
@@ -103,13 +104,13 @@ func randomPun(phrases []string, keyword string) Pun {
 				// Replace the rhyme with the word we're punning on.
 				// If the word is "carts", Lonely Hearts -> Lonely Carts
 				punPhrase := re.ReplaceAllString(phrase, keyword)
-				puns = append(puns, Pun{PunPhrase: punPhrase, OriginalPhrase: phrase})
+				puns = append(puns, Pun{Keyword: keyword, PunPhrase: punPhrase, OriginalPhrase: phrase})
 			}
 		}
 	}
 
 	if len(puns) == 0 {
-		return Pun{Error: "No puns found :("}
+		return Pun{Keyword: keyword, Error: "No puns found :("}
 	} else {
 		return sample(puns)
 	}
